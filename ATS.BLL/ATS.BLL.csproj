@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ATS.DAL\ATS.DAL.csproj" />
+    <ProjectReference Include="..\ATS.Database\ATS.Database.csproj" />
+  </ItemGroup>
+
+</Project>

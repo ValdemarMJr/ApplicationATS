@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ATS.CoreAPI.Model.Entitys
+{
+    [Table("State")]
+    public class State
+    {
+        [Key]
+        [Column("ID")]
+        public int ID { get; set; }
+
+        [Column("Name")]
+        public string Name { get; set; }
+
+        [Column("ShortName")]
+        public string ShortName { get; set; }
+
+        [Column("Inactive", TypeName = "bit")]
+        public bool Inactive { get; set; }
+    }
+}
