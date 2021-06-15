@@ -28,6 +28,16 @@ namespace ATS.CoreAPI.Repository
 
         int Save(Candidate candidate);
 
+        int SaveCandidateImprovmentCourse(CandidateImprovementCourse candidateImprovmentCourse);
+
+        int SaveCandidateAcademicEducation(CandidateAcademicEducation candidateAcademicEducation);
+
+        int SaveCandidateExperiences(CandidateExperience candidateExperience);
+
+        int SaveCandidatePersonalReferences(CandidatePersonalReference candidatePersonalReference);
+
+        int SaveCandidateRoles(CandidateRole candidateRole);
+
         bool Delete(int id);
     }
 }

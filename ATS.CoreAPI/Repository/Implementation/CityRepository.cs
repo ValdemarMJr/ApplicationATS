@@ -67,8 +67,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (cityContext is null)
                 {
-                    cityID = _context.Cities.Add(city).Entity.ID;
+                    _context.Cities.Add(city);
                     _context.SaveChanges();
+
+                    cityID = city.ID;
                 }
                 else
                 {

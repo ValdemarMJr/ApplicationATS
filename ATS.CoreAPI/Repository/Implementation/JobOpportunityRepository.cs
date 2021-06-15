@@ -72,8 +72,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (jobOpportunityContext is null)
                 {
-                    jobOpportunityID = _context.JobOpportunities.Add(jobOpportunity).Entity.ID;
+                    _context.JobOpportunities.Add(jobOpportunity);
                     _context.SaveChanges();
+
+                    jobOpportunityID = jobOpportunity.ID;
                 }
                 else
                 {

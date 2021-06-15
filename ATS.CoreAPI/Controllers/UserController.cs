@@ -33,6 +33,40 @@ namespace ATS.CoreAPI.Controllers
                 return BadRequest("Invalid client request");
         }
 
+        [HttpGet("GetByCPF")]
+        public IActionResult GetByCPF(string cpf)
+        {
+            var claims = User.Claims;
+            var result = _userBussiness.GetByCPF(cpf);
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest("Invalid client request");
+        }
+
+        [HttpGet("GetByEmail")]
+        public IActionResult GetByEmail(string email)
+        {
+            var claims = User.Claims;
+            var result = _userBussiness.GetByEmail(email);
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest("Invalid client request");
+        }
+
+        [HttpGet("GetByUserName")]
+        public IActionResult GetByUserName(string userName)
+        {
+            var claims = User.Claims;
+            var result = _userBussiness.GetByUserName(userName);
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest("Invalid client request");
+        }
+
+
         [HttpPost("Save")]
         public IActionResult Save(User user)
         {
@@ -43,7 +77,18 @@ namespace ATS.CoreAPI.Controllers
                 return BadRequest("Invalid client request");
         }
 
-        [HttpDelete("Delete")]
+        [HttpPut("Delete")]
+        public IActionResult Delete()
+        {
+            var claims = User.Claims;
+            var result = _userBussiness.Delete(Convert.ToInt32(claims.First(claim => claim.Type.Equals("id")).Value));
+            if (result != null)
+                return Ok(result);
+            else
+                return BadRequest("Invalid client request");
+        }
+
+        [HttpDelete("DeleteByCPF")]
         public IActionResult Delete(String cpf)
         {
             User user = _userBussiness.GetByCPF(cpf);

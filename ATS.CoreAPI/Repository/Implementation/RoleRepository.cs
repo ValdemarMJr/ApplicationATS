@@ -72,8 +72,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (roleContext is null)
                 {
-                    roleID = _context.Roles.Add(role).Entity.ID;
+                    _context.Roles.Add(role);
                     _context.SaveChanges();
+
+                    roleID = role.ID;
                 }
                 else
                 {

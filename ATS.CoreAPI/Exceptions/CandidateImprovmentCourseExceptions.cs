@@ -22,4 +22,8 @@ namespace ATS.CoreAPI.Exceptions
     public class SituationCourseIsInvalidExceptions : Exception
     {
     }
+
+    public class DateStartCourseIsRequiredExceptions : Exception
+    {
+    }
 }

@@ -90,8 +90,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (candidateContactContext is null)
                 {
-                    candidateContactID = _context.CandidateContacts.Add(candidateContact).Entity.ID;
+                    _context.CandidateContacts.Add(candidateContact);
                     _context.SaveChanges();
+
+                    candidateContactID = candidateContact.ID;
                 }
                 else
                 {

@@ -72,8 +72,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (courseSituationContext is null)
                 {
-                    courseSituationID = _context.CourseSituations.Add(courseSituation).Entity.ID;
+                    _context.CourseSituations.Add(courseSituation);
                     _context.SaveChanges();
+
+                    courseSituationID = courseSituation.ID;
                 }   
                 else
                 {

@@ -73,8 +73,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (civilStateContext is null)
                 {
-                    stateID = _context.CivilStates.Add(civilState).Entity.ID;
+                    _context.CivilStates.Add(civilState);
                     _context.SaveChanges();
+
+                    stateID = civilState.ID;
                 }
                 else
                 {

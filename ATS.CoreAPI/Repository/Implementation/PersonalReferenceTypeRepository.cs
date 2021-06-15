@@ -72,8 +72,10 @@ namespace ATS.CoreAPI.Repository
             {
                 if (personalReferenceTypeContext is null)
                 {
-                    personalReferenceTypeID = _context.PersonalReferenceTypes.Add(personalReferenceType).Entity.ID;
+                    _context.PersonalReferenceTypes.Add(personalReferenceType);
                     _context.SaveChanges();
+
+                    personalReferenceTypeID = personalReferenceType.ID;
                 }
                 else
                 {

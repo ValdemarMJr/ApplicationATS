@@ -67,6 +67,25 @@ namespace ATS.CoreAPI.Business.Implementations
             return new TokenDTO(true, createDate.ToString(DATE_FORMAT), expirationDate.ToString(DATE_FORMAT), accessToken, refreshToken);
         }
 
+        public TokenDTO GenerateTemporaryCredentials(User user)
+        {
+            if (user is null) return null;
+            List<Claim> claims = new List<Claim>()
+            {
+                new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString("N")),
+                new Claim(JwtRegisteredClaimNames.UniqueName,user.UserName),
+                new Claim("id",user.ID.ToString()),
+            };
+            var accessToken = _tokenService.GenerateAccessToken(claims);
+            var refreshToken = _tokenService.GenerateRefreshToken();
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.Now.AddDays(1);
+            DateTime createDate = DateTime.Now;
+            DateTime expirationDate = createDate.AddMinutes(1);
+            _repository.RefreshUserInfo(user);
+            return new TokenDTO(true, createDate.ToString(DATE_FORMAT), expirationDate.ToString(DATE_FORMAT), accessToken, refreshToken);
+        }
+
         public TokenDTO ValidateCredentials(TokenDTO token)
         {
             var accessToken = token.AccessToken;

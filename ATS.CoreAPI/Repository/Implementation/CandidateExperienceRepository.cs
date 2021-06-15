@@ -84,8 +84,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (candidateExperieceContext is null)
                 {
-                    candidateExperieceID = _context.CandidateExperiences.Add(candidateExperiences).Entity.ID;
+                    _context.CandidateExperiences.Add(candidateExperiences);
                     _context.SaveChanges();
+
+                    candidateExperieceID = candidateExperiences.ID;
                 }
                 else
                 {

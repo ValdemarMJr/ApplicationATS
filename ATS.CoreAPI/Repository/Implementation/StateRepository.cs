@@ -86,8 +86,10 @@ namespace ATS.CoreAPI.Repository
             {
                 if (stateContext is null)
                 {
-                    stateID = _context.States.Add(state).Entity.ID;
+                    _context.States.Add(state);
                     _context.SaveChanges();
+
+                    stateID = state.ID;
                 }
                 else
                 {

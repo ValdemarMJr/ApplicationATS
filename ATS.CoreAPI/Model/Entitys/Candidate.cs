@@ -31,9 +31,6 @@ namespace ATS.CoreAPI.Model.Entitys
         [Column("SerieCarteiraTrabalho")]
         public string SerieCarteiraTrabalho { get; set; }
 
-        [Column("UFCarteiraTrabalho")]
-        public string UFCarteiraTrabalho { get; set; }
-
         [Column("CNH")]
         public string CNH { get; set; }
 
@@ -52,9 +49,6 @@ namespace ATS.CoreAPI.Model.Entitys
         public int AddressID { get; set; }
 
         public Address Address { get; set; }
-
-        [Column("Nacionality")]
-        public string Nacionality { get; set; }
 
         [Column("PlaceOfBirthID")]
         public int PlaceOfBirthID { get; set; }

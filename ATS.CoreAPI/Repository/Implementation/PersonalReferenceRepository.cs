@@ -67,8 +67,9 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (personalReferenceContext is null)
                 {
-                    personalReferenceID = _context.PersonalReferences.Add(personalReference).Entity.ID;
+                    _context.PersonalReferences.Add(personalReference);
                     _context.SaveChanges();
+                    personalReferenceID = personalReference.ID;
                 }
                 else
                 {

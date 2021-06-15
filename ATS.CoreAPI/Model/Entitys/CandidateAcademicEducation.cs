@@ -25,6 +25,7 @@ namespace ATS.CoreAPI.Model.Entitys
         [Column("SituationCourseID")]
         public int SituationCourseID { get; set; }
 
+        [NotMapped]
         public CourseSituation CourseSituation { get; set; }
 
         [Column("DtStart")]

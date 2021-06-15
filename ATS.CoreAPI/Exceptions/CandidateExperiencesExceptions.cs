@@ -16,4 +16,8 @@ namespace ATS.CoreAPI.Exceptions
     public class ActivitiesIsRequiredExceptions : Exception
     {
     }
+
+    public class DateAdmissionIsRequiredExceptions : Exception
+    {
+    }
 }

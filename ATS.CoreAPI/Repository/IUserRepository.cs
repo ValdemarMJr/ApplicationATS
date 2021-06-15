@@ -17,6 +17,7 @@ namespace ATS.CoreAPI.Repository
         User Get(int id);
         User GetByCPF(string cpf);
         User GetByEmail(string email);
+        User GetByUserName(string userName);
         int Save(User user);
         bool Delete(int id);
         bool RegisteredUser(string cpf);

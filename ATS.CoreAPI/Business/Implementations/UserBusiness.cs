@@ -30,6 +30,15 @@ namespace ATS.CoreAPI.Bussiness.Implementations
         {
             return _repository.GetByCPF(cpf);
         }
+        public User GetByEmail(string email)
+        {
+            return _repository.GetByEmail(email);
+        }
+
+        public User GetByUserName(string userName)
+        {
+            return _repository.GetByUserName(userName);
+        }
 
         public int Save(User user)
         {

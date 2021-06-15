@@ -63,7 +63,7 @@ namespace ATS.CoreAPI.Repository.Implementation
 
         public int Save(AcademicEducation academicEducation)
         {
-            int stateID = 0;
+            int academicEducationID = 0;
             var academicEducationContext = _context.AcademicsEducation.FirstOrDefault(s => s.Name == academicEducation.Name);
 
             if (academicEducation.Name == null || String.IsNullOrEmpty(academicEducation.Name))
@@ -72,8 +72,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (academicEducationContext is null)
                 {
-                    stateID = _context.AcademicsEducation.Add(academicEducation).Entity.ID;
+                    _context.AcademicsEducation.Add(academicEducation);
                     _context.SaveChanges();
+
+                    academicEducationID = academicEducation.ID;
                 }
                 else
                 {
@@ -82,12 +84,12 @@ namespace ATS.CoreAPI.Repository.Implementation
 
                     _context.SaveChanges();
 
-                    stateID = academicEducationContext.ID;
+                    academicEducationID = academicEducationContext.ID;
 
                 }
             }
 
-            return stateID;
+            return academicEducationID;
         }
     }
 }

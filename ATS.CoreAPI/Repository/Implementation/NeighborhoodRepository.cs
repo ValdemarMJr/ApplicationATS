@@ -68,8 +68,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (neighborhoodContext is null)
                 {
-                    neighborhoodID = _context.Neighborhoods.Add(neighborhood).Entity.ID;
+                    _context.Neighborhoods.Add(neighborhood);
                     _context.SaveChanges();
+
+                    neighborhoodID = neighborhood.ID;
                 }
                 else
                 {

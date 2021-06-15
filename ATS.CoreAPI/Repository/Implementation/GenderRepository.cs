@@ -72,8 +72,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (genderContext is null)
                 {
-                    genderID = _context.Genders.Add(gender).Entity.ID;
+                    _context.Genders.Add(gender);
                     _context.SaveChanges();
+
+                    genderID = gender.ID;
                 }
                 else
                 {

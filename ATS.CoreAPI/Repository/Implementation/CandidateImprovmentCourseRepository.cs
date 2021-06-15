@@ -99,8 +99,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (candidateImprovementCourseContext is null)
                 {
-                    candidateImprovementCourseID = _context.CandidateImprovementCourses.Add(candidateImprovementCourse).Entity.ID;
+                    _context.CandidateImprovementCourses.Add(candidateImprovementCourse);
                     _context.SaveChanges();
+
+                    candidateImprovementCourseID = candidateImprovementCourse.ID;
                 }
                 else
                 {

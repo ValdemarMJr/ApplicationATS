@@ -67,8 +67,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (contactContext is null)
                 {
-                    contactID = _context.Contacts.Add(contact).Entity.ID;
+                    _context.Contacts.Add(contact);
                     _context.SaveChanges();
+
+                    contactID = contact.ID;
                 }
                 else
                 {

@@ -90,8 +90,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (candidateRoleContext is null)
                 {
-                    candidateRoleID = _context.CandidateRoles.Add(candidateRole).Entity.ID;
+                    _context.CandidateRoles.Add(candidateRole);
                     _context.SaveChanges();
+
+                    candidateRoleID = candidateRole.ID;
                 }
                 else
                 {

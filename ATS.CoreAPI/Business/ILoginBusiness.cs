@@ -1,4 +1,5 @@
 ﻿using ATS.CoreAPI.Model.DTO;
+using ATS.CoreAPI.Model.Entitys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace ATS.CoreAPI.Bussiness
     {
         TokenDTO ValidateCredentials(UserDTO userCredentials);
         TokenDTO ValidateCredentials(TokenDTO token);
+        TokenDTO GenerateTemporaryCredentials(User user);
         bool RevokeToken(string userName);
     }
 }

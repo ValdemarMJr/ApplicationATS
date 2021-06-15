@@ -69,8 +69,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (addressContext is null)
                 {
-                    addressID = _context.Adresses.Add(address).Entity.ID;
+                    _context.Adresses.Add(address);
                     _context.SaveChanges();
+
+                    addressID = address.ID;
                 }
                 else
                 {

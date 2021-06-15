@@ -99,7 +99,7 @@ namespace ATS.CoreAPI
             services.AddScoped<IPersonalReferenceTypesBusiness, PersonalReferenceTypesBusiness>();
             services.AddScoped<IRoleBusiness, RoleBusiness>();
             services.AddScoped<IStateBusiness, StateBusiness>();
-            services.AddScoped<UserBussines, UserBussines>();
+            services.AddScoped<IUserBusiness, UserBussines>();
 
             services.AddTransient<ITokenService, TokenService>();
 

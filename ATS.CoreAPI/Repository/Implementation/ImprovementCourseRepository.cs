@@ -72,8 +72,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (improvementCourseContext is null)
                 {
-                    improvementCourseID = _context.ImprovementCourses.Add(improvementCourse).Entity.ID;
+                    _context.ImprovementCourses.Add(improvementCourse);
                     _context.SaveChanges();
+
+                    improvementCourseID = improvementCourse.ID;
                 }
                 else
                 {

@@ -75,12 +75,17 @@ namespace ATS.CoreAPI.Repository
         }
         public User GetByCPF(string cpf)
         {
-            return _context.Users.FirstOrDefault(u => u.CPF.Equals(cpf));
+            return _context.Users.FirstOrDefault(u => u.CPF.Replace(".", "").Replace("-", "").Equals(cpf.Replace(".", "").Replace("-", "")));
         }
 
         public User GetByEmail(string email)
         {
-            return _context.Users.FirstOrDefault(u => u.Email.Equals(email));
+            return _context.Users.FirstOrDefault(u => u.Email.ToUpper().Equals(email.ToUpper()));
+        }
+
+        public User GetByUserName(string userName)
+        {
+            return _context.Users.FirstOrDefault(u => u.UserName.ToUpper().Equals(userName.ToUpper()));
         }
 
         public int Save(User user)
@@ -102,8 +107,9 @@ namespace ATS.CoreAPI.Repository
             {
                 if (userContext is null)
                 {
-                    userID = _context.Users.Add(user).Entity.ID;
+                   _context.Users.Add(user);
                     _context.SaveChanges();
+                    userID = user.ID;
                 }
                 else
                 {
@@ -128,6 +134,42 @@ namespace ATS.CoreAPI.Repository
                 throw new UserNotExistsException();
             else
             {
+                List<CandidateAcademicEducation> academicEducation = _context.CandidateAcademicsEducation.Where(a => a.CandidateID == id).ToList();
+
+                foreach (var item in academicEducation)
+                    _context.CandidateAcademicsEducation.Remove(item);
+
+                List<CandidateContact> contacts = _context.CandidateContacts.Where(a => a.CandidateID == id).ToList();
+
+                foreach (var item in contacts)
+                    _context.CandidateContacts.Remove(item);
+
+
+                List<CandidateExperience> experiences = _context.CandidateExperiences.Where(a => a.CandidateID == id).ToList();
+
+                foreach (var item in experiences)
+                    _context.CandidateExperiences.Remove(item);
+
+                List<CandidateImprovementCourse> courses = _context.CandidateImprovementCourses.Where(a => a.CandidateID == id).ToList();
+
+                foreach (var item in courses)
+                    _context.CandidateImprovementCourses.Remove(item);
+
+                List<CandidatePersonalReference> references = _context.CandidatePersonalReferences.Where(a => a.CandidateID == id).ToList();
+
+                foreach (var item in references)
+                    _context.CandidatePersonalReferences.Remove(item);
+
+                List<CandidateRole> roles = _context.CandidateRoles.Where(a => a.CandidateID == id).ToList();
+
+                foreach (var item in roles)
+                    _context.CandidateRoles.Remove(item);
+
+                Candidate candidate = _context.Candidates.Where(c => c.ID == id).FirstOrDefault();
+                Address address = _context.Adresses.Where(a => a.ID == candidate.AddressID).FirstOrDefault();
+                _context.Adresses.Remove(address);
+                _context.Candidates.Remove(candidate);
+
                 _context.Users.Remove(userContext);
                 _context.SaveChanges();
                 return true;

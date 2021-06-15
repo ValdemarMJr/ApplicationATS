@@ -69,5 +69,30 @@ namespace ATS.CoreAPI.Business.Implementations
         {
             return _repository.Save(candidate);
         }
+
+        public int SaveCandidateAcademicEducation(CandidateAcademicEducation candidateAcademicEducation)
+        {
+            return _repository.SaveCandidateAcademicEducation(candidateAcademicEducation);
+        }
+
+        public int SaveCandidateExperiences(CandidateExperience candidateExperience)
+        {
+            return _repository.SaveCandidateExperiences(candidateExperience);
+        }
+
+        public int SaveCandidateImprovmentCourse(CandidateImprovementCourse candidateImprovmentCourse)
+        {
+            return _repository.SaveCandidateImprovmentCourse(candidateImprovmentCourse);
+        }
+
+        public int SaveCandidatePersonalReferences(CandidatePersonalReference candidatePersonalReference)
+        {
+            return _repository.SaveCandidatePersonalReferences(candidatePersonalReference);
+        }
+
+        public int SaveCandidateRoles(CandidateRole candidateRole)
+        {
+            return _repository.SaveCandidateRoles(candidateRole);
+        }
     }
 }

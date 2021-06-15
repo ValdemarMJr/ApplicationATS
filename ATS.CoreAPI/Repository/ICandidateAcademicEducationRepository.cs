@@ -17,5 +17,7 @@ namespace ATS.CoreAPI.Repository
         bool Delete(int id);
 
         bool DeleteByCandidateID(int candidateID);
+
+
     }
 }

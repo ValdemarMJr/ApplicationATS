@@ -1,6 +1,7 @@
 ﻿using ATS.CoreAPI.Bussiness;
 using ATS.CoreAPI.Exceptions;
 using ATS.CoreAPI.Model.DTO;
+using ATS.CoreAPI.Model.Entitys;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -45,6 +46,19 @@ namespace ATS.CoreAPI.Controllers
             }
         }
 
+        [HttpPost("generateTemporaryCredentials")]
+        public IActionResult GenerateTemporaryCredentials([FromBody] User user)
+        {
+
+            if (user is null) 
+                return BadRequest("Invalid client request");
+            
+            var token = _loginBussines.GenerateTemporaryCredentials(user);
+
+            if (token is null) return Unauthorized();
+                return Ok(token);
+
+        }
         [HttpPost("refresh")]
         public IActionResult Refresh([FromBody] TokenDTO tokenVO)
         {

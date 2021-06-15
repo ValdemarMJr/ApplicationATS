@@ -12,6 +12,10 @@ namespace ATS.CoreAPI.Bussiness
 
         User GetByCPF(string pCPF);
 
+        User GetByEmail(string email);
+
+        User GetByUserName(string userName);
+
         int Save(User pUser);
 
         bool Delete(int pID);

@@ -97,8 +97,10 @@ namespace ATS.CoreAPI.Repository.Implementation
             {
                 if (candidateAcademicEducationContext is null)
                 {
-                    candidateAcademicEducationID = _context.CandidateAcademicsEducation.Add(candidateAcademicEducation).Entity.ID;
+                     _context.CandidateAcademicsEducation.Add(candidateAcademicEducation);
                     _context.SaveChanges();
+
+                    candidateAcademicEducationID = candidateAcademicEducation.ID;
                 }
                 else
                 {
